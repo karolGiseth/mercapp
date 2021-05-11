@@ -1,7 +1,7 @@
 {
-  
+  "homepage": "https://ingfabiocastellanos.github.io/mercapp",
   "name": "mercapp",
-  "version": "0.9.0",
+  "version": "1.2.5",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
