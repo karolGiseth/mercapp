@@ -15,7 +15,7 @@ export default function Login() {
 
   const formSucces = async (datos) => {
     const credenciales = await login();
-    var isLogged = false;
+    let isLogged = false;
     for (const key in credenciales) {
       if (Object.hasOwnProperty.call(credenciales, key)) {
         const {
@@ -115,7 +115,7 @@ export default function Login() {
                 },
               ]}
             >
-              <Select placeholder="--Seleccione--">
+              <Select placeholder="--Seleccione--" size="large" showSearch>
                 <Option value="comprador">comprador</Option>
                 <Option value="vendedor">vendedor</Option>
                 <Option value="transportador">transportador</Option>

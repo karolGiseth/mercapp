@@ -51,28 +51,14 @@ export const CardProduct = ({
         src={image ? image : logo}
         alt={"imagen " + nomProducto}
       />
-      {nomProducto ? (
-        <h2 className="mb-2 text-3xl">{nomProducto}</h2>
-      ) : (
-        <h2 className="mb-2 text-3xl">Nombre producto</h2>
-      )}
-      {descripcion ? (
-        <p className="mb-2">{descripcion}</p>
-      ) : (
-        <p className="mb-2">La descripción de producto</p>
-      )}
-      {cantidadStock ? (
+      {nomProducto && <h2 className="mb-2 text-3xl">{nomProducto}</h2>}
+      {descripcion && <p className="mb-2">{descripcion}</p>}
+      {cantidadStock && (
         <p className="mb-2">
           Disponible: {cantidadStock} {pesoProducto}
         </p>
-      ) : (
-        <p className="mb-2">La cantidad del producto</p>
       )}
-      {vendedor ? (
-        <p className="mb-2">Vendedor: {vendedor}</p>
-      ) : (
-        <p className="mb-2">Vendedor del producto</p>
-      )}
+      {vendedor && <p className="mb-2">Vendedor: {vendedor}</p>}
 
       <Button
         onClick={() => setModal(true)}

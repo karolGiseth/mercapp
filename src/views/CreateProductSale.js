@@ -5,6 +5,7 @@ import { obtenerProductosAccion } from "../redux/productsDucks";
 
 import background from "../img/background.jpg";
 import { productoParaPublicar, publicarProducto } from "../helpers/api";
+import { PublicProducts } from "../components/PublicProducts";
 
 export default function CreateProductSale() {
   const [modal, setModal] = useState(false);
@@ -54,7 +55,7 @@ export default function CreateProductSale() {
 
   return (
     <div
-      className="min-h-screen pt-6 pl-10"
+      className="min-h-screen px-3 pt-6"
       style={{ backgroundImage: `url(${background})` }}
     >
       <h2 className="text-3xl text-center">Mis Productos</h2>
@@ -63,6 +64,11 @@ export default function CreateProductSale() {
           Publicar Nuevo Producto
         </Button>
       </div>
+
+      <div className="grid grid-cols-4 gap-4 pt-3 mx-auto mb-11">
+        <PublicProducts />
+      </div>
+
       <Modal
         title="Publicar producto"
         visible={modal}

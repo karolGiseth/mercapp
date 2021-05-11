@@ -48,7 +48,7 @@ export default function Register() {
         style={{ boxShadow: "-1px 2px 33px 0px rgba(59,160,191,1)" }}
       >
         <br />
-        <h2 className="text-3xl text-center ">Registro</h2>
+        <h2 className="text-4xl text-center ">Registro</h2>
         <br />
         <div className="px-6">
           <Form onFinish={formSucces} ref={refResetForm}>
@@ -86,7 +86,7 @@ export default function Register() {
                 },
               ]}
             >
-              <Select placeholder="--Seleccione--">
+              <Select placeholder="--Seleccione--" showSearch>
                 <Option value="comprador">comprador</Option>
                 <Option value="vendedor">vendedor</Option>
                 <Option value="transportador">transportador</Option>

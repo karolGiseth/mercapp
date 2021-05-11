@@ -1,11 +1,11 @@
 import { Button, message } from "antd";
-import React from "react";
+import React, { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import avatar from "../img/avatar.jpg";
 import background from "../img/background.jpg";
 import { sesionCerradaAccion } from "../redux/authDucks";
 
-export const Perfil = () => {
+export const Perfil = memo(() => {
   const dispatch = useDispatch();
   const sesion = useSelector((store) => store.sesion.array);
   return (
@@ -43,4 +43,4 @@ export const Perfil = () => {
       </div>
     </div>
   );
-};
+});
