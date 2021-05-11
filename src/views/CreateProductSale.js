@@ -55,7 +55,7 @@ export default function CreateProductSale() {
 
   return (
     <div
-      className="min-h-screen px-3 pt-6"
+      className="min-h-screen pt-6 pl-10"
       style={{ backgroundImage: `url(${background})` }}
     >
       <h2 className="text-3xl text-center">Mis Productos</h2>
@@ -65,7 +65,7 @@ export default function CreateProductSale() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-4 gap-4 pt-3 mx-auto mb-11">
+      <div className="grid grid-cols-4 gap-4 pt-3 mx-2 mb-11">
         <PublicProducts />
       </div>
 

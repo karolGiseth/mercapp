@@ -79,7 +79,7 @@ export const Menu = memo(() => {
     >
       <div className="w-10/12 pt-3 mx-auto sm:w-1/2 ">
         <select
-          className="w-full p-3 mb-2 text-gray-600 bg-white border rounded-md focus:outline-none"
+          className="w-full p-3 text-gray-600 bg-white rounded-md focus:outline-none"
           onChange={(e) => {
             setBuscarProducto(e.target.value);
           }}
