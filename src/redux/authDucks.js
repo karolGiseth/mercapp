@@ -22,7 +22,7 @@ export default function sesionReducer(state = dataInicial, action) {
 }
 
 // acciones
-export const sesionIniciadaAccion = (data) => async (dispatch, getState) => {
+export const sesionIniciadaAccion = (data) => async (dispatch) => {
   dispatch({
     type: SESION_INICIADA,
     payload: data,
@@ -33,7 +33,7 @@ export const sesionIniciadaAccion = (data) => async (dispatch, getState) => {
   }
 };
 
-export const sesionCerradaAccion = () => async (dispatch, getState) => {
+export const sesionCerradaAccion = () => async (dispatch) => {
   dispatch({
     type: SESION_CERRADA,
   });

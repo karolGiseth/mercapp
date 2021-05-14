@@ -6,12 +6,15 @@ import { obtenerProductosAccion } from "../redux/productsDucks";
 import background from "../img/background.jpg";
 import { productoParaPublicar, publicarProducto } from "../helpers/api";
 import { PublicProducts } from "../components/PublicProducts";
+import TextArea from "antd/lib/input/TextArea";
+import { useHistory } from "react-router";
 
 export default function CreateProductSale() {
   const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
   const products = useSelector((store) => store.products.array);
   const sesion = useSelector((store) => store.sesion.array);
+  const history = useHistory();
 
   const refForm = useRef();
 
@@ -48,6 +51,7 @@ export default function CreateProductSale() {
     closeModal();
     message.success("Producto publicado correctamente");
     refForm.current.resetFields();
+    history.push("/");
   };
 
   const { Item } = Form;
@@ -55,7 +59,7 @@ export default function CreateProductSale() {
 
   return (
     <div
-      className="min-h-screen pt-6 pl-10"
+      className="min-h-screen px-3 pt-6"
       style={{ backgroundImage: `url(${background})` }}
     >
       <h2 className="text-3xl text-center">Mis Productos</h2>
@@ -65,15 +69,17 @@ export default function CreateProductSale() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-4 gap-4 pt-3 mx-2 mb-11">
+      <div className="grid grid-cols-4 gap-4 pt-3 mx-auto mb-11">
         <PublicProducts />
       </div>
+      <br></br>
 
       <Modal
         title="Publicar producto"
         visible={modal}
         onCancel={closeModal}
         footer
+        destroyOnClose
       >
         <Form onFinish={handleForm} ref={refForm}>
           <Item
@@ -123,6 +129,19 @@ export default function CreateProductSale() {
             <Input min={0} placeholder="ejemplo 10 Bultos" type="number" />
           </Item>
           <Item
+            name="precio"
+            label="Precio del producto"
+            rules={[
+              {
+                required: true,
+                message:
+                  "Es necesacio que especifique los detalles en la descripción",
+              },
+            ]}
+          >
+            <Input type="number" placeholder="valor del producto" />
+          </Item>
+          <Item
             name="descripcion"
             label="Descripción del producto"
             rules={[
@@ -133,7 +152,7 @@ export default function CreateProductSale() {
               },
             ]}
           >
-            <Input placeholder="ejemplo, Precio negociable" />
+            <TextArea placeholder="ejemplo, Precio negociable, datos de la venta, precio según cantidad, ofertas, etc..." />
           </Item>
           <Item>
             <Button htmlType="submit" type="primary" size="large">

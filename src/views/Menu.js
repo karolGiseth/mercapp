@@ -1,10 +1,12 @@
 import React, { memo, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { CardProduct } from "../components/CardProduct";
 import { verProductosPublicos } from "../helpers/api";
 
 import background from "../img/background.jpg";
 
 export const Menu = memo(() => {
+  const sesion = useSelector((store) => store.sesion.array);
   const [productos, setProductos] = useState([]);
   const [buscarProducto, setBuscarProducto] = useState("--buscar--");
   useEffect(() => {
@@ -24,6 +26,8 @@ export const Menu = memo(() => {
           cantidadStock,
           pesoProducto,
           vendedor,
+          precio,
+          correo,
         } = productos[key];
         if (buscarProducto === "--buscar--") {
           fragmento.push(
@@ -35,6 +39,11 @@ export const Menu = memo(() => {
               cantidadStock={cantidadStock}
               pesoProducto={pesoProducto}
               vendedor={vendedor}
+              precio={precio}
+              correoVendedor={correo}
+              correoComprador={sesion.correo}
+              direccion={sesion.direccion}
+              comprador={sesion.nombre}
             />
           );
         } else {
@@ -48,6 +57,8 @@ export const Menu = memo(() => {
                 cantidadStock={cantidadStock}
                 pesoProducto={pesoProducto}
                 vendedor={vendedor}
+                correoVendedor={correo}
+                correoComprador={sesion.correo}
               />
             );
           }
@@ -61,10 +72,10 @@ export const Menu = memo(() => {
     let fragmento = [];
     for (const key in productos) {
       if (Object.hasOwnProperty.call(productos, key)) {
-        const element = productos[key];
+        const { nombreProducto } = productos[key];
         fragmento.push(
-          <option value={element.nombreProducto} key={key}>
-            {element.nombreProducto}
+          <option value={nombreProducto} key={key}>
+            {nombreProducto}
           </option>
         );
       }

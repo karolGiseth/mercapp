@@ -63,8 +63,100 @@ export const publicarProducto = async (producto) => {
   return data;
 };
 
+export const editarProductoPublicado = async (key, datos) => {
+  const requestOptions = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(datos),
+  };
+  const response = await fetch(
+    `${url}/productosPublicos/${key}.json`,
+    requestOptions
+  );
+  const data = await response.json();
+  return data;
+};
+
+export const editarCuenta = async (key, datos) => {
+  const requestOptions = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(datos),
+  };
+  const response = await fetch(`${url}/usuarios/${key}.json`, requestOptions);
+  const data = await response.json();
+  return data;
+};
+
 export const verProductosPublicos = async () => {
   const res = await fetch(`${url}/productosPublicos.json`);
   const data = await res.json();
+  return data;
+};
+
+export const carritoCompras = async (producto) => {
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(producto),
+  };
+  const response = await fetch(`${url}/carritoCompras.json`, requestOptions);
+  const data = await response.json();
+  return data;
+};
+
+export const verCarrito = async () => {
+  const res = await fetch(`${url}/carritoCompras.json`);
+  const data = await res.json();
+  return data;
+};
+
+export const editarSeguimientoProducto = async (key, datos) => {
+  const requestOptions = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(datos),
+  };
+  const response = await fetch(
+    `${url}/carritoCompras/${key}.json`,
+    requestOptions
+  );
+  const data = await response.json();
+  return data;
+};
+
+export const crearVehiculo = async (vehiculo) => {
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(vehiculo),
+  };
+  const data = await fetch(`${url}/vehiculos.json`, requestOptions);
+  return data;
+};
+
+export const listarVehiculos = async () => {
+  const res = await fetch(`${url}/vehiculos.json`);
+  const data = await res.json();
+  return data;
+};
+
+export const eliminarVehiculo = async (vehiculo) => {
+  const requestOptions = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(vehiculo),
+  };
+  const data = await fetch(`${url}/vehiculos.json`, requestOptions);
+  return data;
+};
+
+export const actualizarVehiculo = async (vehiculo, key) => {
+  const requestOptions = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(vehiculo),
+  };
+  const data = await fetch(`${url}/vehiculos/${key}.json`, requestOptions);
   return data;
 };

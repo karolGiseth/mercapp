@@ -9,6 +9,7 @@ import Login from "../auth/Login";
 import Register from "../auth/Register";
 import { crearProductos } from "../helpers/api";
 import AccionesAdmin from "../views/AccionesAdmin";
+import CarsPublic from "../views/CarsPublic";
 import CreateProductSale from "../views/CreateProductSale";
 import { Home } from "../views/Home";
 import { Menu } from "../views/Menu";
@@ -16,6 +17,7 @@ import { Navigation } from "../views/Navigation";
 import { Notifications } from "../views/Notifications";
 import { Perfil } from "../views/Perfil";
 import { ShoppingCart } from "../views/ShoppingCart";
+import Trasnportadores from "../views/Trasnportadores";
 import CompradorRoutes from "./CompradorRoutes";
 import VendedorRoutes from "./VendedorRoutes";
 
@@ -40,10 +42,15 @@ export const Routes = () => {
               component={crearProductos}
             />
             <Route path="/notificaciones" component={Notifications} />
+            <Route path="/transportador" component={CarsPublic} />
             <Route path="/acciones-admin" component={AccionesAdmin} />
             <VendedorRoutes
               path="/mis-productos"
               component={CreateProductSale}
+            />
+            <VendedorRoutes
+              path="/transportadores-disponibles"
+              component={Trasnportadores}
             />
             <Route path="/perfil" component={Perfil} />
             {sesion ? <Navigation /> : <></>}

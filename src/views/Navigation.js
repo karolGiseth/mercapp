@@ -5,6 +5,7 @@ import { AddProductIcon } from "../helpers/icons/AddProductIcon";
 import { AjustesIcon } from "../helpers/icons/AjustesIcon";
 import { CampaignIcon } from "../helpers/icons/CampaignIcon";
 import { HomeIcon } from "../helpers/icons/HomeIcon";
+import LibretaIcon from "../helpers/icons/LibretaIcon";
 import { MenuIcon } from "../helpers/icons/MenuIcon";
 import { PerfilIcon } from "../helpers/icons/PerfilIcon";
 import { ShoppingCartIcon } from "../helpers/icons/ShoppingCartIcon";
@@ -39,13 +40,22 @@ export const Navigation = () => {
           <ShoppingCartIcon />
         </NavLink>
       )}
-      {sesion.rol === "comprador" && (
+      {sesion.rol === "vendedor" && (
         <NavLink
           exact
           activeClassName="border-t-4 border-blue-500 transform -translate-y-2"
           to="/notificaciones"
         >
           <CampaignIcon />
+        </NavLink>
+      )}
+      {sesion.rol === "transportador" && (
+        <NavLink
+          exact
+          activeClassName="border-t-4 border-blue-500 transform -translate-y-2"
+          to="/transportador"
+        >
+          <AjustesIcon />
         </NavLink>
       )}
       {sesion.rol === "vendedor" && (
@@ -55,6 +65,15 @@ export const Navigation = () => {
           to="/mis-productos"
         >
           <AddProductIcon />
+        </NavLink>
+      )}
+      {sesion.rol === "vendedor" && (
+        <NavLink
+          exact
+          activeClassName="border-t-4 border-blue-500 transform -translate-y-2"
+          to="/transportadores-disponibles"
+        >
+          <LibretaIcon />
         </NavLink>
       )}
       {sesion.rol === "administrador" && (

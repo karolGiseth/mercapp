@@ -1,8 +1,9 @@
-import { Button, Modal, Form, Input, Select } from "antd";
+import { Button, Modal, Form, message } from "antd";
 import React, { useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 
 import logo from "../img/logo.png";
+import { carritoCompras } from "../helpers/api";
 
 export const CardProduct = ({
   image,
@@ -11,27 +12,35 @@ export const CardProduct = ({
   cantidadStock,
   pesoProducto,
   vendedor,
+  precio,
+  correoVendedor,
+  correoComprador,
+  direccion,
+  comprador,
 }) => {
   const [modal, setModal] = useState(false);
-  const [formCarrito, setFormCarrito] = useState({
-    cantidad: "",
-    peso: "",
-  });
-
-  const { Item } = Form;
-  const { Option } = Select;
 
   const cerrarModal = () => {
     setModal(false);
   };
 
-  const formSucces = ({ cantidad, peso }) => {
-    setFormCarrito({
-      ...formCarrito,
-      cantidad,
-      peso,
+  const formSucces = () => {
+    carritoCompras({
+      image,
+      nomProducto,
+      descripcion,
+      cantidadStock,
+      pesoProducto,
+      vendedor,
+      precio,
+      correoVendedor,
+      correoComprador,
+      estado: "Pendiente de envío",
+      direccion,
+      comprador,
     });
     cerrarModal();
+    message.success("Agregado al carrito");
   };
 
   // contante para personalizar el modal
@@ -59,6 +68,7 @@ export const CardProduct = ({
         </p>
       )}
       {vendedor && <p className="mb-2">Vendedor: {vendedor}</p>}
+      {precio && <p className="mb-2">Precio: {precio}</p>}
 
       <Button
         onClick={() => setModal(true)}
@@ -68,49 +78,19 @@ export const CardProduct = ({
         Agregar al carrito
       </Button>
       <Modal
-        title="Agregar al carrito"
+        destroyOnClose
+        title="¿Agregar producto al carrito?"
         visible={modal}
         onCancel={cerrarModal}
         footer
       >
         <Form {...layout} onFinish={formSucces}>
-          <Item
-            label="Cantidad"
-            name="cantidad"
-            rules={[
-              {
-                required: true,
-                message: "Por favor ingrese un valor numerico",
-              },
-            ]}
-          >
-            <Input type="number" />
-          </Item>
-          <Item
-            label="Peso"
-            name="peso"
-            rules={[
-              {
-                required: true,
-                message: "Por favor seleccione una opcion",
-              },
-            ]}
-          >
-            <Select className="w-full" placeholder="--seleccione--" showSearch>
-              <Option value="Lb">Lb</Option>
-              <Option value="Kg">Kg</Option>
-              <Option value="Arroba">Arroba</Option>
-              <Option value="Bulto">Bulto</Option>
-            </Select>
-          </Item>
-          <Item>
-            <Button className="mr-2" onClick={cerrarModal}>
-              Cancelar
-            </Button>
-            <Button type="primary" htmlType="submit">
-              Enviar
-            </Button>
-          </Item>
+          <Button className="mr-2" onClick={cerrarModal}>
+            Cancelar
+          </Button>
+          <Button type="primary" htmlType="submit">
+            Agregar
+          </Button>
         </Form>
       </Modal>
     </div>
