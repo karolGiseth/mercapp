@@ -93,7 +93,6 @@ export default function CarsPublic() {
                         }
                       }
                     }
-
                     setVehiculos(data);
                     eliminarVehiculo(data);
                     message.warning("Vehiculo eliminado ⛔");

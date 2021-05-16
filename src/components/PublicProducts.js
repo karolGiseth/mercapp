@@ -2,7 +2,11 @@ import { Button, Form, Input, message, Modal, Select } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { verProductosPublicos, editarProductoPublicado } from "../helpers/api";
+import {
+  verProductosPublicos,
+  editarProductoPublicado,
+  eliminarProductoPublicado,
+} from "../helpers/api";
 
 export const PublicProducts = () => {
   const refForm = useRef();
@@ -31,6 +35,22 @@ export const PublicProducts = () => {
     );
   };
 
+  const eliminarProducto = (id) => {
+    let datos = {};
+    for (const key in productos) {
+      if (Object.hasOwnProperty.call(productos, key)) {
+        const element = productos[key];
+        if (key !== id) {
+          datos = { ...datos, [key]: element };
+        }
+      }
+    }
+
+    setProductos(datos);
+    eliminarProductoPublicado(datos);
+    message.success("Producto removido correctamente 👌");
+  };
+
   const card = () => {
     let fragment = [];
     for (const key in productos) {
@@ -43,7 +63,7 @@ export const PublicProducts = () => {
               key={key}
             >
               <img
-                className="mx-auto rounded-tr-md rounded-tl-3xl "
+                className="object-cover w-full h-56 mx-auto rounded-tr-md rounded-tl-3xl"
                 src={element.image}
                 alt={element.nombreProducto}
               />
@@ -62,6 +82,13 @@ export const PublicProducts = () => {
                 }}
               >
                 Editar
+              </Button>
+              <Button
+                danger
+                type="primary"
+                onClick={() => eliminarProducto(key)}
+              >
+                Eliminar
               </Button>
             </div>
           );

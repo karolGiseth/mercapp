@@ -1,10 +1,12 @@
 import { Button, Form, Input, message, Modal, Select } from "antd";
 import React, { memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import {
   ciudadesPorDepartamento,
   departamentosColombia,
   editarCuenta,
+  eliminarCuenta,
 } from "../helpers/api";
 import avatar from "../img/avatar.jpg";
 import background from "../img/background.jpg";
@@ -14,8 +16,13 @@ export const Perfil = memo(() => {
   const [departamentos, setDepartamentos] = useState([]);
   const [ciudades, setCiudades] = useState([]);
   const [modal, setModal] = useState(false);
+  const [modalEliminar, setModalEliminar] = useState({
+    modal: false,
+    eliminar: null,
+  });
   const dispatch = useDispatch();
   const sesion = useSelector((store) => store.sesion.array);
+  const history = useHistory();
 
   useEffect(() => {
     (async () => {
@@ -40,6 +47,12 @@ export const Perfil = memo(() => {
     message.warning("Inicie sesión nuevamente para ver los cambios...");
     editarCuenta(sesion.key, datos);
     setModal(false);
+  };
+
+  const eliminarCuentaUsuario = () => {
+    message.success("Adios, gracias por haber usado nuestra App");
+    eliminarCuenta({ usuario: sesion.key, correo: sesion.correo });
+    history.push("/login");
   };
 
   const { Item } = Form;
@@ -223,6 +236,27 @@ export const Perfil = memo(() => {
             </Form>
           </Modal>
         </div>
+        <br />
+        <br />
+        <Button
+          danger
+          type="primary"
+          className="mb-2 ml-2"
+          onClick={() => {
+            setModalEliminar({ ...modalEliminar, modal: true });
+          }}
+        >
+          Eliminar Cuenta
+        </Button>
+        <Modal
+          title="¿Esta seguro de eliminar su cuenta?"
+          visible={modalEliminar.modal}
+          onCancel={() => setModalEliminar({ ...modalEliminar, modal: false })}
+          destroyOnClose
+          onOk={eliminarCuentaUsuario}
+        >
+          <p>¡Esta accion no se puede deshacer!</p>
+        </Modal>
       </div>
     </div>
   );

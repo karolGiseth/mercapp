@@ -1,6 +1,11 @@
+import { Button, message } from "antd";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { verCarrito } from "../helpers/api";
+import {
+  editarSeguimientoProducto,
+  eliminarProductoDelCarrito,
+  verCarrito,
+} from "../helpers/api";
 
 import background from "../img/background.jpg";
 
@@ -14,6 +19,21 @@ export const ShoppingCart = () => {
     })();
   }, []);
 
+  const eliminarProducto = (id) => {
+    let datos = {};
+    for (const key in carrito) {
+      if (Object.hasOwnProperty.call(carrito, key)) {
+        const element = carrito[key];
+        if (key !== id) {
+          datos = { ...datos, [key]: element };
+        }
+      }
+    }
+
+    setCarrito(datos);
+    eliminarProductoDelCarrito(datos);
+  };
+
   const cartProduct = () => {
     let fragment = [];
     for (const key in carrito) {
@@ -26,7 +46,7 @@ export const ShoppingCart = () => {
               className="col-span-4 pb-2 m-5 text-center duration-100 border border-blue-500 rounded-lg shadow-lg backdrop-filter backdrop-blur-sm sm:transform hover:scale-105 hover:shadow-2xl rounded-tl-3xl sm:col-span-2 md:col-span-1"
             >
               <img
-                className="mx-auto rounded-tr-md rounded-tl-3xl "
+                className="object-cover w-full h-56 mx-auto rounded-tr-md rounded-tl-3xl"
                 src={element.image}
                 alt={element.nomProducto}
               />
@@ -38,9 +58,36 @@ export const ShoppingCart = () => {
               <p>
                 Cantidad: {element.cantidadStock} {element.pesoProducto}
               </p>
-              <p className="p-3 font-semibold text-white bg-blue-500">
-                Seguimiento: {element.estado}
-              </p>
+              {element.comprado !== false ? (
+                <p className="p-3 font-semibold text-white bg-blue-500">
+                  Seguimiento: {element.estado}
+                </p>
+              ) : (
+                <>
+                  <Button
+                    onClick={() => {
+                      let datos = { ...element, comprado: true };
+                      editarSeguimientoProducto(key, datos);
+                      message.success("Compra realizada con exito");
+                      setCarrito({ ...carrito, [key]: datos });
+                    }}
+                    type="primary"
+                    size="large"
+                  >
+                    Comprar
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      eliminarProducto(key);
+                    }}
+                    type="primary"
+                    size="large"
+                    danger
+                  >
+                    Eliminar
+                  </Button>
+                </>
+              )}
             </div>
           );
         }
