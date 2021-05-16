@@ -1,4 +1,4 @@
-import { Button, message } from "antd";
+import { Button, message, Steps } from "antd";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -35,6 +35,8 @@ export const ShoppingCart = () => {
     eliminarProductoDelCarrito(datos);
   };
 
+  const { Step } = Steps;
+
   const cartProduct = () => {
     let fragment = [];
     for (const key in carrito) {
@@ -62,6 +64,22 @@ export const ShoppingCart = () => {
               {element.comprado !== false ? (
                 <p className="p-3 font-semibold text-white bg-blue-500">
                   Seguimiento: {element.estado}
+                  <Steps
+                    className="flex flex-wrap"
+                    current={
+                      element.estado === "Pendiente de envío"
+                        ? 0
+                        : element.estado === "En camino"
+                        ? 1
+                        : 2
+                    }
+                    percent={60}
+                    responsive={true}
+                  >
+                    <Step title="Enviado" />
+                    <Step title="En camino" />
+                    <Step title="Entregado" />
+                  </Steps>
                   <br />
                   Fecha de compra: {element.fecha}
                   <br />
