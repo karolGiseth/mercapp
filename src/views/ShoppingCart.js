@@ -1,4 +1,5 @@
 import { Button, message } from "antd";
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -43,7 +44,7 @@ export const ShoppingCart = () => {
           fragment.push(
             <div
               key={key}
-              className="col-span-4 pb-2 m-5 text-center duration-100 border border-blue-500 rounded-lg shadow-lg backdrop-filter backdrop-blur-sm sm:transform hover:scale-105 hover:shadow-2xl rounded-tl-3xl sm:col-span-2 md:col-span-1"
+              className="col-span-4 pb-2 m-5 text-center duration-100 border border-blue-500 rounded-lg shadow-lg backdrop-filter backdrop-blur-sm sm:transform hover:shadow-2xl rounded-tl-3xl sm:col-span-2 md:col-span-1"
             >
               <img
                 className="object-cover w-full h-56 mx-auto rounded-tr-md rounded-tl-3xl"
@@ -61,12 +62,27 @@ export const ShoppingCart = () => {
               {element.comprado !== false ? (
                 <p className="p-3 font-semibold text-white bg-blue-500">
                   Seguimiento: {element.estado}
+                  <br />
+                  Fecha de compra: {element.fecha}
+                  <br />
+                  Fecha de entrega:{" "}
+                  {moment(element.fechaEntrega).format("YYYY-MM-DD") ===
+                  "Fecha inválida"
+                    ? "Pediente por definir"
+                    : moment(element.fechaEntrega).format("YYYY-MM-DD")}
                 </p>
               ) : (
                 <>
                   <Button
                     onClick={() => {
-                      let datos = { ...element, comprado: true };
+                      let datos = {
+                        ...element,
+                        comprado: true,
+                        fecha: moment().format("YYYY-MM-DD"),
+                        fechaEntrega: "Pendiente definir por el vendedor.",
+                        transportadorAsignado: false,
+                        transportadorAcepto: "Pendiente",
+                      };
                       editarSeguimientoProducto(key, datos);
                       message.success("Compra realizada con exito");
                       setCarrito({ ...carrito, [key]: datos });

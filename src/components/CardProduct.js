@@ -55,7 +55,7 @@ export const CardProduct = ({
   };
 
   return (
-    <div className="col-span-4 pb-2 text-center duration-100 border border-blue-500 rounded-lg shadow-lg backdrop-filter backdrop-blur-sm sm:transform hover:scale-105 hover:shadow-2xl rounded-tl-3xl sm:col-span-2 md:col-span-1">
+    <div className="col-span-4 pb-2 text-center duration-100 border border-blue-500 rounded-lg shadow-lg backdrop-filter backdrop-blur-sm sm:transform hover:shadow-2xl rounded-tl-3xl sm:col-span-2 md:col-span-1">
       <img
         className="object-cover w-full h-56 mx-auto rounded-tr-md rounded-tl-3xl"
         src={image ? image : logo}

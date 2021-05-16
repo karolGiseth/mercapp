@@ -11,6 +11,7 @@ import { crearProductos } from "../helpers/api";
 import AccionesAdmin from "../views/AccionesAdmin";
 import CarsPublic from "../views/CarsPublic";
 import CreateProductSale from "../views/CreateProductSale";
+import Envios from "../views/Envios";
 import { Home } from "../views/Home";
 import { Menu } from "../views/Menu";
 import { Navigation } from "../views/Navigation";
@@ -43,6 +44,7 @@ export const Routes = () => {
             />
             <Route path="/notificaciones" component={Notifications} />
             <Route path="/transportador" component={CarsPublic} />
+            <Route path="/envios" component={Envios} />
             <Route path="/acciones-admin" component={AccionesAdmin} />
             <VendedorRoutes
               path="/mis-productos"

@@ -7,6 +7,7 @@ import { CampaignIcon } from "../helpers/icons/CampaignIcon";
 import { HomeIcon } from "../helpers/icons/HomeIcon";
 import LibretaIcon from "../helpers/icons/LibretaIcon";
 import { MenuIcon } from "../helpers/icons/MenuIcon";
+import MundoIcon from "../helpers/icons/MundoIcon";
 import { PerfilIcon } from "../helpers/icons/PerfilIcon";
 import { ShoppingCartIcon } from "../helpers/icons/ShoppingCartIcon";
 
@@ -56,6 +57,15 @@ export const Navigation = () => {
           to="/transportador"
         >
           <AjustesIcon />
+        </NavLink>
+      )}
+      {sesion.rol === "transportador" && (
+        <NavLink
+          exact
+          activeClassName="border-t-4 border-blue-500 transform -translate-y-2"
+          to="/envios"
+        >
+          <MundoIcon />
         </NavLink>
       )}
       {sesion.rol === "vendedor" && (
