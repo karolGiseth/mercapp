@@ -4,6 +4,7 @@ import { PlusOutlined } from "@ant-design/icons";
 
 import logo from "../img/logo.png";
 import { carritoCompras } from "../helpers/api";
+import { Zoom } from "react-awesome-reveal";
 
 export const CardProduct = ({
   image,
@@ -61,6 +62,7 @@ export const CardProduct = ({
         src={image ? image : logo}
         alt={"imagen " + nomProducto}
       />
+
       {nomProducto && <h2 className="mb-2 text-3xl">{nomProducto}</h2>}
       {descripcion && <p className="mb-2">{descripcion}</p>}
       {cantidadStock && (
@@ -70,14 +72,15 @@ export const CardProduct = ({
       )}
       {vendedor && <p className="mb-2">Vendedor: {vendedor}</p>}
       {precio && <p className="mb-2">Precio: {precio}</p>}
-
-      <Button
-        onClick={() => setModal(true)}
-        type="primary"
-        icon={<PlusOutlined />}
-      >
-        Agregar al carrito
-      </Button>
+      <Zoom>
+        <Button
+          onClick={() => setModal(true)}
+          type="primary"
+          icon={<PlusOutlined />}
+        >
+          Agregar al carrito
+        </Button>
+      </Zoom>
       <Modal
         destroyOnClose
         title="¿Agregar producto al carrito?"

@@ -46,7 +46,7 @@ export const ShoppingCart = () => {
           fragment.push(
             <div
               key={key}
-              className="col-span-4 pb-2 m-5 text-center duration-100 border border-blue-500 rounded-lg shadow-lg backdrop-filter backdrop-blur-sm sm:transform hover:shadow-2xl rounded-tl-3xl sm:col-span-2 md:col-span-1"
+              className="col-span-4 pb-2 m-5 overflow-hidden text-center duration-100 border border-blue-500 rounded-lg shadow-lg backdrop-filter backdrop-blur-sm sm:transform hover:shadow-2xl rounded-tl-3xl sm:col-span-2 md:col-span-1"
             >
               <img
                 className="object-cover w-full h-56 mx-auto rounded-tr-md rounded-tl-3xl"
@@ -61,17 +61,17 @@ export const ShoppingCart = () => {
               <p>
                 Cantidad: {element.cantidadStock} {element.pesoProducto}
               </p>
-              {element.comprado !== false ? (
-                <p className="p-3 font-semibold text-white bg-blue-500">
-                  Seguimiento: {element.estado}
+              {element.comprado !== false && (
+                <p>
                   <Steps
-                    className="flex flex-wrap"
+                    type="navigation"
+                    className="flex flex-col"
                     current={
                       element.estado === "Pendiente de envío"
                         ? 0
                         : element.estado === "En camino"
                         ? 1
-                        : 2
+                        : 3
                     }
                     percent={60}
                     responsive={true}
@@ -80,6 +80,11 @@ export const ShoppingCart = () => {
                     <Step title="En camino" />
                     <Step title="Entregado" />
                   </Steps>
+                </p>
+              )}
+              <br />
+              {element.comprado !== false ? (
+                <p className="p-3 font-semibold text-white bg-blue-500">
                   <br />
                   Fecha de compra: {element.fecha}
                   <br />

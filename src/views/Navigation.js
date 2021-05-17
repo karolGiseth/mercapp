@@ -15,7 +15,7 @@ export const Navigation = () => {
   const sesion = useSelector((store) => store.sesion.array);
 
   return (
-    <div className="fixed bottom-0 flex items-center justify-around w-full py-1 border backdrop-filter backdrop-blur-sm">
+    <div className="fixed bottom-0 flex items-center justify-around w-full py-1 bg-white border">
       <NavLink
         exact
         activeClassName="border-t-4 border-blue-500 transform -translate-y-2"
