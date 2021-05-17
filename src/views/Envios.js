@@ -1,8 +1,11 @@
-import { Button, message } from "antd";
+import { Button, DatePicker, Form, message } from "antd";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { editarSeguimientoProducto, verCarrito } from "../helpers/api";
+
+import "moment/locale/es";
+import locale from "antd/es/date-picker/locale/es_ES";
 
 import background from "../img/background.jpg";
 
@@ -15,6 +18,8 @@ export default function Envios() {
       setEnvios(await verCarrito());
     })();
   }, []);
+
+  const { Item } = Form;
 
   return (
     <div
@@ -68,46 +73,85 @@ export default function Envios() {
                     )}
                     {element.transportadorAcepto === "Pendiente" && (
                       <>
-                        <Button
-                          onClick={() => {
+                        <Form
+                          onFinish={({ fechaRecogida }) => {
                             setEnvios({
                               ...envios,
                               [key]: {
                                 ...element,
                                 transportadorAcepto: "Aceptado",
+                                fechaRecogida:
+                                  moment(fechaRecogida).format("YYYY-MM-DD"),
                               },
                             });
                             message.success("Envio aceptado");
                             editarSeguimientoProducto(key, {
                               ...element,
                               transportadorAcepto: "Aceptado",
+                              fechaRecogida:
+                                moment(fechaRecogida).format("YYYY-MM-DD"),
                             });
                           }}
-                          className="mx-1"
-                          type="primary"
                         >
-                          Aceptar
-                        </Button>
-                        <Button
-                          onClick={() => {
-                            setEnvios({
-                              ...envios,
-                              [key]: {
+                          <p>Seleccione la fecha de recogida del producto:</p>
+                          <Item
+                            name="fechaRecogida"
+                            rules={[
+                              {
+                                required: true,
+                                message:
+                                  "Por favor seleccione la fecha de recogidad del pedido",
+                              },
+                            ]}
+                          >
+                            <DatePicker
+                              className="w-full"
+                              placeholder="fecha recogida del producto"
+                              locale={locale}
+                            />
+                          </Item>
+                          <Button
+                            onClick={() => {
+                              // setEnvios({
+                              //   ...envios,
+                              //   [key]: {
+                              //     ...element,
+                              //     transportadorAcepto: "Aceptado",
+                              //   },
+                              // });
+                              // message.success("Envio aceptado");
+                              // editarSeguimientoProducto(key, {
+                              //   ...element,
+                              //   transportadorAcepto: "Aceptado",
+                              // });
+                            }}
+                            className="mx-1"
+                            type="primary"
+                            htmlType="submit"
+                          >
+                            Aceptar
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              setEnvios({
+                                ...envios,
+                                [key]: {
+                                  ...element,
+                                  transportadorAsignado: "Rechazado",
+                                },
+                              });
+                              message.success("Envio rechazado");
+                              editarSeguimientoProducto(key, {
                                 ...element,
                                 transportadorAsignado: "Rechazado",
-                              },
-                            });
-                            message.success("Envio rechazado");
-                            editarSeguimientoProducto(key, {
-                              ...element,
-                              transportadorAsignado: "Rechazado",
-                            });
-                          }}
-                          danger
-                          type="primary"
-                        >
-                          Rechazar
-                        </Button>
+                              });
+                            }}
+                            danger
+                            type="primary"
+                          >
+                            Rechazar
+                          </Button>
+                        </Form>
                       </>
                     )}
                   </div>
@@ -118,6 +162,9 @@ export default function Envios() {
           return fragmento;
         })()}
       </div>
+      <br />
+      <br />
+      <br />
     </div>
   );
 }

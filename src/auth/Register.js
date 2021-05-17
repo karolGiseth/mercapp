@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import {
   ciudadesPorDepartamento,
   departamentosColombia,
+  login,
   register,
 } from "../helpers/api";
 import background from "../img/background.jpg";
@@ -12,6 +13,7 @@ import background from "../img/background.jpg";
 export default function Register() {
   const [departamentos, setDepartamentos] = useState([]);
   const [ciudades, setCiudades] = useState([]);
+  const [credenciales, setCredenciales] = useState([]);
   const history = useHistory();
 
   const refResetForm = useRef();
@@ -19,6 +21,7 @@ export default function Register() {
   useEffect(() => {
     (async () => {
       setDepartamentos(await departamentosColombia());
+      setCredenciales(await login());
     })();
   }, []);
 
@@ -32,10 +35,22 @@ export default function Register() {
   };
 
   const formSucces = (datos) => {
-    register(datos);
-    message.success("Registrado correctamente");
-    refResetForm.current.resetFields();
-    history.push("/login");
+    let registrar = true;
+    for (const key in credenciales) {
+      if (Object.hasOwnProperty.call(credenciales, key)) {
+        const { correo, rol } = credenciales[key];
+        if (correo === datos.correo && rol === datos.rol) {
+          message.warning("El usuario ya se encuentra registrado");
+          registrar = false;
+        }
+      }
+    }
+    if (registrar) {
+      register(datos);
+      message.success("Registrado correctamente");
+      refResetForm.current.resetFields();
+      history.push("/login");
+    }
   };
 
   return (

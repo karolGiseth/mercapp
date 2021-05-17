@@ -105,6 +105,7 @@ export const ShoppingCart = () => {
                         fechaEntrega: "Pendiente definir por el vendedor.",
                         transportadorAsignado: false,
                         transportadorAcepto: "Pendiente",
+                        fechaRecogida: "Pendiente",
                       };
                       editarSeguimientoProducto(key, datos);
                       message.success("Compra realizada con exito");

@@ -71,6 +71,8 @@ export const Notifications = () => {
                   Transportador asignado: {element.transportadorAsignado}
                   <br />
                   Transportador acepto: {element.transportadorAcepto}
+                  <br />
+                  Fecha de recogida: {element.fechaRecogida}
                 </p>
                 <Button
                   type="primary"
