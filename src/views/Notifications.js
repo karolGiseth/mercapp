@@ -124,6 +124,7 @@ export const Notifications = () => {
                   <br />
                   Transportador acepto: {element.transportadorAcepto}
                 </p>
+                <br />
                 <Button
                   type="primary"
                   size="large"
