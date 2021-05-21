@@ -75,6 +75,10 @@ export default function Register() {
                   required: true,
                   message: "Por favor digite su nombre completo",
                 },
+                {
+                  pattern: "[a-zA-Z ]{3,254}",
+                  message: "El nombre solo debe contener letras",
+                },
               ]}
             >
               <Input placeholder="Pepito perez" />

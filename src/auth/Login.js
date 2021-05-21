@@ -58,17 +58,17 @@ export default function Login() {
 
   return (
     <div
-      className="min-h-screen pt-5"
+      className="min-h-screen pt-3"
       style={{ backgroundImage: `url(${background})` }}
     >
       <div
-        className="mx-1 mb-10 border rounded-lg shadow-2xl sm:mx-auto md:p-10 sm:w-3/4 lg:w-1/2 backdrop-filter backdrop-blur-sm"
+        className="mx-1 mb-10 border rounded-lg shadow-2xl sm:mx-auto sm:w-3/4 lg:w-1/2 backdrop-filter backdrop-blur-sm"
         style={{ boxShadow: "-1px 2px 33px 0px rgba(59,160,191,1)" }}
       >
         <br />
-        <img className="h-32 m-auto" src={logo} alt="logo mercapp" />
+        <img className="m-auto h-52" src={logo} alt="logo mercapp" />
         <br />
-        <h2 className="text-4xl text-center ">Login</h2>
+        <h2 className="text-4xl text-center ">Iniciar sesión</h2>
         <br />
         <div className="px-6">
           <Form onFinish={formSucces}>

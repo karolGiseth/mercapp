@@ -18,6 +18,8 @@ export const CardProduct = ({
   correoComprador,
   direccion,
   comprador,
+  telefonoVendedor,
+  direccionVendedor,
 }) => {
   const [modal, setModal] = useState(false);
 
@@ -40,6 +42,8 @@ export const CardProduct = ({
       direccion,
       comprador,
       comprado: false,
+      telefonoVendedor,
+      direccionVendedor,
     });
     cerrarModal();
     message.success("Agregado al carrito");

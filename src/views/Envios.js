@@ -1,4 +1,4 @@
-import { Button, DatePicker, Form, message } from "antd";
+import { Button, Form, Input, message } from "antd";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -51,6 +51,10 @@ export default function Envios() {
                       {"(s)"}
                     </p>
                     <p>
+                      <span className="font-bold">Lugar de recogida:</span>{" "}
+                      {element.direccionVendedor}
+                    </p>
+                    <p>
                       <span className="font-bold">Fecha de entrega:</span>{" "}
                       {moment(element.fechaEntrega).format("YYYY-MM-DD")}
                     </p>
@@ -65,6 +69,10 @@ export default function Envios() {
                     <p>
                       <span className="font-bold">Correo del solicitante:</span>{" "}
                       {element.correoVendedor}
+                    </p>
+                    <p>
+                      <span className="font-bold">Telefóno solicitante:</span>{" "}
+                      {element.telefonoVendedor}
                     </p>
                     {element.transportadorAcepto === "Aceptado" && (
                       <span className="p-1 ml-3 text-xl border-b-4 border-blue-500 rounded-md">
@@ -104,27 +112,16 @@ export default function Envios() {
                               },
                             ]}
                           >
-                            <DatePicker
+                            <Input
+                              min={element.fecha}
+                              max={element.fechaEntrega}
+                              type="date"
                               className="w-full"
                               placeholder="fecha recogida del producto"
                               locale={locale}
                             />
                           </Item>
                           <Button
-                            onClick={() => {
-                              // setEnvios({
-                              //   ...envios,
-                              //   [key]: {
-                              //     ...element,
-                              //     transportadorAcepto: "Aceptado",
-                              //   },
-                              // });
-                              // message.success("Envio aceptado");
-                              // editarSeguimientoProducto(key, {
-                              //   ...element,
-                              //   transportadorAcepto: "Aceptado",
-                              // });
-                            }}
                             className="mx-1"
                             type="primary"
                             htmlType="submit"

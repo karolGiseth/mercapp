@@ -1,11 +1,11 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { CardProduct } from "../components/CardProduct";
 import { verProductosPublicos } from "../helpers/api";
 
 import background from "../img/background.jpg";
 
-export const Menu = memo(() => {
+export const Menu = () => {
   const sesion = useSelector((store) => store.sesion.array);
   const [productos, setProductos] = useState([]);
   const [buscarProducto, setBuscarProducto] = useState("--buscar--");
@@ -28,6 +28,8 @@ export const Menu = memo(() => {
           vendedor,
           precio,
           correo,
+          telefono,
+          direccion,
         } = productos[key];
         if (buscarProducto === "--buscar--") {
           fragmento.push(
@@ -44,6 +46,8 @@ export const Menu = memo(() => {
               correoComprador={sesion.correo}
               direccion={sesion.direccion}
               comprador={sesion.nombre}
+              telefonoVendedor={telefono}
+              direccionVendedor={direccion}
             />
           );
         } else {
@@ -59,6 +63,8 @@ export const Menu = memo(() => {
                 vendedor={vendedor}
                 correoVendedor={correo}
                 correoComprador={sesion.correo}
+                telefonoVendedor={telefono}
+                direccionVendedor={direccion}
               />
             );
           }
@@ -105,4 +111,4 @@ export const Menu = memo(() => {
       <br />
     </div>
   );
-});
+};

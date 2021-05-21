@@ -1,4 +1,4 @@
-import { Button, Form, Input, message, Modal } from "antd";
+import { Button, Form, Input, message, Modal, Select } from "antd";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -111,6 +111,8 @@ export default function CarsPublic() {
     return fragmento;
   };
 
+  const { Option } = Select;
+
   const { Item } = Form;
   return (
     <div
@@ -151,9 +153,13 @@ export default function CarsPublic() {
                   message:
                     "Por favor escriba el nombre de la marca de su vehiculo 😁 👆",
                 },
+                {
+                  pattern: "[a-zA-Z ]{3,254}",
+                  message: "El nombre solo debe contener letras",
+                },
               ]}
             >
-              <Input />
+              <Input placeholder="mazda" />
             </Item>
             <Item
               label="Tipo de vehiculo"
@@ -166,7 +172,28 @@ export default function CarsPublic() {
                 },
               ]}
             >
-              <Input />
+              <Select placeholder="moto" showSearch>
+                <Option value="Vehículo de tracción animal">
+                  Vehículo de tracción animal
+                </Option>
+                <Option value="Bicicleta">Bicicleta</Option>
+                <Option value="Ciclomotor">Ciclomotor</Option>
+                <Option value="Motocicleta">Motocicleta</Option>
+                <Option value="Motocarro">Motocarro</Option>
+                <Option value="Automóvil de tres ruedas">
+                  Automóvil de tres ruedas
+                </Option>
+                <Option value="Autobús o autocar MMA 3.500 kg (ligero)">
+                  Autobús o autocar MMA 3.500 kg (ligero)
+                </Option>
+                <Option value="Camión MMA 3.500 kg (ligero)">
+                  Camión MMA 3.500 kg (ligero)
+                </Option>
+                <Option value="Furgón/Furgoneta MMA 3.500 kg (ligero)">
+                  Furgón/Furgoneta MMA 3.500 kg (ligero)
+                </Option>
+                <Option value="Tractor agrícola">Tractor agrícola</Option>
+              </Select>
             </Item>
             <Item
               label="Modelo"
@@ -178,7 +205,16 @@ export default function CarsPublic() {
                 },
               ]}
             >
-              <Input min={0} type="number" />
+              <Select placeholder="2018">
+                <Option>1991</Option>
+                {(() => {
+                  let fragmento = [];
+                  for (let index = 1990; index < 2021; index++) {
+                    fragmento.push(<Option value={index}>{index}</Option>);
+                  }
+                  return fragmento;
+                })()}
+              </Select>
             </Item>
             <Item
               label="Placa"
@@ -188,9 +224,18 @@ export default function CarsPublic() {
                   required: true,
                   message: "Por favor escriba la placa de su vehiculo 😁 👆",
                 },
+                {
+                  min: 3,
+                  message:
+                    "Por favor verifique el valor ingresado, el número de placa debe tener por lo menos 5 caracteres.",
+                },
+                {
+                  pattern: "[a-zA-Z]{3}[0-9]{3}|[a-zA-Z]{3}[0-9]{2}[a-zA-Z]",
+                  message: "Verifique el formato de la placa",
+                },
               ]}
             >
-              <Input />
+              <Input placeholder="ACB123" className="uppercase" />
             </Item>
             <Item
               label="Color"
@@ -200,9 +245,13 @@ export default function CarsPublic() {
                   required: true,
                   message: "Por favor escriba el color de su vehiculo 😁 👆",
                 },
+                {
+                  pattern: "[a-zA-Z ]{3,254}",
+                  message: "El color solo debe contener letras",
+                },
               ]}
             >
-              <Input />
+              <Input placeholder="rojo" />
             </Item>
             <Item
               label="Cilindraje"
@@ -215,20 +264,7 @@ export default function CarsPublic() {
                 },
               ]}
             >
-              <Input type="number" />
-            </Item>
-            <Item
-              label="Tipo de carrocería"
-              name="TipoCarroceria"
-              rules={[
-                {
-                  required: true,
-                  message:
-                    "Por favor escriba el tipo de carrosería de su vehiculo 😁 👆",
-                },
-              ]}
-            >
-              <Input />
+              <Input min="1" type="number" placeholder="valor numerico" />
             </Item>
             <Item
               label="Tipo de combustible"
@@ -237,11 +273,14 @@ export default function CarsPublic() {
                 {
                   required: true,
                   message:
-                    "Por favor escriba el combustible que usa su vehiculo 😁 👆",
+                    "Por favor seleccione el combustible que usa su vehiculo 😁 👆",
                 },
               ]}
             >
-              <Input />
+              <Select mode="tags" placeholder="Gas, Gasolina o ambos">
+                <Option value="Gasolina">Gasolina</Option>
+                <Option value="Gas">Gas</Option>
+              </Select>
             </Item>
             <br />
             <Item className="text-center">

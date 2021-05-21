@@ -8,7 +8,7 @@ import {
   eliminarProductoPublicado,
 } from "../helpers/api";
 
-export const PublicProducts = () => {
+export const PublicProducts = ({ actualizar }) => {
   const refForm = useRef();
   const [productos, setProductos] = useState([]);
   const [modal, setModal] = useState(false);
@@ -20,7 +20,7 @@ export const PublicProducts = () => {
     (async () => {
       setProductos(await verProductosPublicos());
     })();
-  }, []);
+  }, [actualizar]);
 
   const { Item } = Form;
   const { Option } = Select;

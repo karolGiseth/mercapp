@@ -1,4 +1,4 @@
-import { Button, DatePicker, Form, Input, message, Modal, Select } from "antd";
+import { Button, Form, Input, message, Modal, Select } from "antd";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -74,17 +74,20 @@ export const Notifications = () => {
                   <br />
                   Fecha de recogida: {element.fechaRecogida}
                 </p>
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => {
-                    setModal(true);
-                    setDatosActualizados(element);
-                    setKey(key);
-                  }}
-                >
-                  Editar seguimiento
-                </Button>
+                <br />
+                {element.estado !== "Entregado" && (
+                  <Button
+                    type="primary"
+                    size="large"
+                    onClick={() => {
+                      setModal(true);
+                      setDatosActualizados(element);
+                      setKey(key);
+                    }}
+                  >
+                    Editar seguimiento
+                  </Button>
+                )}
               </div>
             );
           if (
@@ -182,7 +185,16 @@ export const Notifications = () => {
         footer
         destroyOnClose
       >
-        <Form onFinish={formSucces}>
+        <Form
+          onFinish={formSucces}
+          initialValues={{
+            estado: datosActualizados.estado,
+            fechaEntrega: moment(datosActualizados.fechaEntrega).format(
+              "YYYY-MM-DD"
+            ),
+            transportadorAsignado: datosActualizados.transportadorAsignado,
+          }}
+        >
           <Item
             label="Seguimiento"
             name="estado"
@@ -208,7 +220,17 @@ export const Notifications = () => {
               },
             ]}
           >
-            <DatePicker className="w-full" locale={locale} />
+            <Input
+              disabled={
+                datosActualizados.transportadorAcepto === "Aceptado"
+                  ? true
+                  : false
+              }
+              min={moment(datosActualizados.fecha).format("YYYY-MM-DD")}
+              type="date"
+              className="w-full"
+              locale={locale}
+            />
           </Item>
           <Item
             label="Asignar transportador"
@@ -220,7 +242,14 @@ export const Notifications = () => {
             ]}
             name="transportadorAsignado"
           >
-            <Select placeholder="--seleccione--">
+            <Select
+              disabled={
+                datosActualizados.transportadorAcepto === "Aceptado"
+                  ? true
+                  : false
+              }
+              placeholder="--seleccione--"
+            >
               <Option value="No asignado">No asignar</Option>
               {(() => {
                 let fragmento = [];

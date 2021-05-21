@@ -4,17 +4,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { obtenerProductosAccion } from "../redux/productsDucks";
 
 import background from "../img/background.jpg";
-import { productoParaPublicar, publicarProducto } from "../helpers/api";
+import {
+  productoParaPublicar,
+  publicarProducto,
+  verProductosPublicos,
+} from "../helpers/api";
 import { PublicProducts } from "../components/PublicProducts";
 import TextArea from "antd/lib/input/TextArea";
-import { useHistory } from "react-router";
 
 export default function CreateProductSale() {
+  const [actualizar, setActualizar] = useState(0);
   const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
   const products = useSelector((store) => store.products.array);
   const sesion = useSelector((store) => store.sesion.array);
-  const history = useHistory();
 
   const refForm = useRef();
 
@@ -39,6 +42,24 @@ export default function CreateProductSale() {
   };
 
   const handleForm = async (datos) => {
+    const productosExistentes = await verProductosPublicos();
+    for (const key in productosExistentes) {
+      if (Object.hasOwnProperty.call(productosExistentes, key)) {
+        const element = productosExistentes[key];
+        if (
+          element.correo === sesion.correo &&
+          element.nomProducto === datos.nomProducto
+        ) {
+          message.warning(
+            "Este producto ya lo tiene creado, no se puede repetir"
+          );
+          return;
+        }
+      }
+    }
+    setTimeout(() => {
+      setActualizar(actualizar + 1);
+    }, 1000);
     const producto = await productoParaPublicar(datos.nomProducto);
     const productoCreado = {
       ...datos,
@@ -46,12 +67,13 @@ export default function CreateProductSale() {
       vendedor: sesion.nombre,
       nombreProducto: producto.nombre,
       image: producto.image,
+      telefono: sesion.telefono,
+      direccion: sesion.direccion,
     };
-    publicarProducto(productoCreado);
+    await publicarProducto(productoCreado);
     closeModal();
     message.success("Producto publicado correctamente");
     refForm.current.resetFields();
-    history.push("/");
   };
 
   const { Item } = Form;
@@ -70,7 +92,7 @@ export default function CreateProductSale() {
       </div>
 
       <div className="grid grid-cols-4 gap-4 pt-3 mx-auto mb-11">
-        <PublicProducts />
+        <PublicProducts actualizar={actualizar} />
       </div>
       <br></br>
 
