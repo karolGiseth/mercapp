@@ -68,7 +68,16 @@ export const Notifications = () => {
                     ? "Pediente por definir"
                     : moment(element.fechaEntrega).format("YYYY-MM-DD")}
                   <br />
-                  Transportador asignado: {element.transportadorAsignado}
+                  {(() => {
+                    for (const key in vehiculos) {
+                      if (Object.hasOwnProperty.call(vehiculos, key)) {
+                        const vh = vehiculos[key];
+                        if (vh.correo === element.transportadorAsignado) {
+                          return <>Transportador asignado: {vh.nombre}</>;
+                        }
+                      }
+                    }
+                  })()}
                   <br />
                   Transportador acepto: {element.transportadorAcepto}
                   <br />

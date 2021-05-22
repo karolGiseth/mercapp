@@ -31,27 +31,8 @@ export const Menu = () => {
           telefono,
           direccion,
         } = productos[key];
-        if (buscarProducto === "--buscar--") {
-          fragmento.push(
-            <CardProduct
-              key={key}
-              image={image}
-              nomProducto={nombreProducto}
-              descripcion={descripcion}
-              cantidadStock={cantidadStock}
-              pesoProducto={pesoProducto}
-              vendedor={vendedor}
-              precio={precio}
-              correoVendedor={correo}
-              correoComprador={sesion.correo}
-              direccion={sesion.direccion}
-              comprador={sesion.nombre}
-              telefonoVendedor={telefono}
-              direccionVendedor={direccion}
-            />
-          );
-        } else {
-          if (nombreProducto === buscarProducto) {
+        if (cantidadStock > 0) {
+          if (buscarProducto === "--buscar--") {
             fragmento.push(
               <CardProduct
                 key={key}
@@ -61,12 +42,33 @@ export const Menu = () => {
                 cantidadStock={cantidadStock}
                 pesoProducto={pesoProducto}
                 vendedor={vendedor}
+                precio={precio}
                 correoVendedor={correo}
                 correoComprador={sesion.correo}
+                direccion={sesion.direccion}
+                comprador={sesion.nombre}
                 telefonoVendedor={telefono}
                 direccionVendedor={direccion}
               />
             );
+          } else {
+            if (nombreProducto === buscarProducto) {
+              fragmento.push(
+                <CardProduct
+                  key={key}
+                  image={image}
+                  nomProducto={nombreProducto}
+                  descripcion={descripcion}
+                  cantidadStock={cantidadStock}
+                  pesoProducto={pesoProducto}
+                  vendedor={vendedor}
+                  correoVendedor={correo}
+                  correoComprador={sesion.correo}
+                  telefonoVendedor={telefono}
+                  direccionVendedor={direccion}
+                />
+              );
+            }
           }
         }
       }

@@ -3,9 +3,11 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
+  editarProductoPublicado,
   editarSeguimientoProducto,
   eliminarProductoDelCarrito,
   verCarrito,
+  verProductosPublicos,
 } from "../helpers/api";
 
 import background from "../img/background.jpg";
@@ -139,6 +141,23 @@ export const ShoppingCart = () => {
                       editarSeguimientoProducto(key, datos);
                       message.success("Compra realizada con exito");
                       setCarrito({ ...carrito, [key]: datos });
+                      (async () => {
+                        let x = await verProductosPublicos();
+                        for (const a in x) {
+                          if (Object.hasOwnProperty.call(x, a)) {
+                            const p = x[a];
+                            if (
+                              p.correo === element.correoVendedor &&
+                              p.nombreProducto === element.nomProducto
+                            ) {
+                              editarProductoPublicado(a, {
+                                ...p,
+                                cantidadStock: 0,
+                              });
+                            }
+                          }
+                        }
+                      })();
                     }}
                     type="primary"
                     size="large"
