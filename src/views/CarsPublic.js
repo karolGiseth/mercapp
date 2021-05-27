@@ -235,7 +235,10 @@ export default function CarsPublic() {
                 },
               ]}
             >
-              <Input placeholder="ACB123" className="uppercase" />
+              <Input
+                placeholder="para bicicleta escribir ABC123"
+                className="uppercase"
+              />
             </Item>
             <Item
               label="Color"
@@ -264,7 +267,11 @@ export default function CarsPublic() {
                 },
               ]}
             >
-              <Input min="1" type="number" placeholder="valor numerico" />
+              <Input
+                min="1"
+                type="number"
+                placeholder="valor numerico, para bicicleta poner 1"
+              />
             </Item>
             <Item
               label="Tipo de combustible"
@@ -280,6 +287,9 @@ export default function CarsPublic() {
               <Select mode="tags" placeholder="Gas, Gasolina o ambos">
                 <Option value="Gasolina">Gasolina</Option>
                 <Option value="Gas">Gas</Option>
+                <Option value="No aplica para Bicicleta">
+                  No aplica para Bicicleta
+                </Option>
               </Select>
             </Item>
             <br />
