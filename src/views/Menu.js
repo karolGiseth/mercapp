@@ -80,12 +80,13 @@ export const Menu = () => {
     let fragmento = [];
     for (const key in productos) {
       if (Object.hasOwnProperty.call(productos, key)) {
-        const { nombreProducto } = productos[key];
-        fragmento.push(
-          <option value={nombreProducto} key={key}>
-            {nombreProducto}
-          </option>
-        );
+        const { nombreProducto, cantidadStock } = productos[key];
+        cantidadStock > 0 &&
+          fragmento.push(
+            <option value={nombreProducto} key={key}>
+              {nombreProducto}
+            </option>
+          );
       }
     }
     return fragmento;
