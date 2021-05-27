@@ -108,7 +108,7 @@ export const ShoppingCart = () => {
                   percent={60}
                   responsive={true}
                 >
-                  <Step title="Enviado" />
+                  <Step title="Comprado" />
                   <Step title="En camino" />
                   <Step title="Entregado" />
                 </Steps>
