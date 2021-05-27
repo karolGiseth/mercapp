@@ -215,6 +215,7 @@ export const Notifications = () => {
             ]}
           >
             <Select placeholder="--seleccione--">
+              <Option value="Comprado">Comprado</Option>
               <Option value="En camino">En camino</Option>
               <Option value="Entregado">Entregado</Option>
             </Select>
