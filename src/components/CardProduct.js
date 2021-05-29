@@ -76,7 +76,7 @@ export const CardProduct = ({
           Disponible: {cantidadStock} {pesoProducto}
         </p>
       )}
-      {vendedor && <p className="mb-2">Vendedor: {vendedor}</p>}
+      {vendedor && <p className="mb-2">Vendedor/Productor: {vendedor}</p>}
       {precio && <p className="mb-2">Precio: {precio}</p>}
       <Zoom>
         <Button
