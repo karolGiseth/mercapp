@@ -89,8 +89,8 @@ export const ShoppingCart = () => {
               <h2 className="text-2xl text-center">{element.nomProducto}</h2>
               <p>{element.descripcion}</p>
               <p>Precio: {element.precio}</p>
-              <p>Vendedor: {element.vendedor}</p>
-              <p>Email del vendedor: {element.correoVendedor}</p>
+              <p>Vendedor/productor: {element.vendedor}</p>
+              <p>Email del vendedor/productor: {element.correoVendedor}</p>
               <p>
                 Cantidad: {element.cantidadStock} {element.pesoProducto}
               </p>
@@ -133,7 +133,8 @@ export const ShoppingCart = () => {
                         ...element,
                         comprado: true,
                         fecha: moment().format("YYYY-MM-DD"),
-                        fechaEntrega: "Pendiente definir por el vendedor.",
+                        fechaEntrega:
+                          "Pendiente definir por el vendedor/productor.",
                         transportadorAsignado: false,
                         transportadorAcepto: "Pendiente",
                         fechaRecogida: "Pendiente",

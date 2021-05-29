@@ -11,6 +11,7 @@ import {
 import background from "../img/background.jpg";
 
 export default function CarsPublic() {
+  const [tienePlaca, setTienePlaca] = useState(false);
   const [modal, setModal] = useState(false);
   const [vehiculos, setVehiculos] = useState([]);
   const [editar, setEditar] = useState({
@@ -216,30 +217,39 @@ export default function CarsPublic() {
                 })()}
               </Select>
             </Item>
-            <Item
-              label="Placa"
-              name="placa"
-              rules={[
-                {
-                  required: true,
-                  message: "Por favor escriba la placa de su vehiculo 😁 👆",
-                },
-                {
-                  min: 3,
-                  message:
-                    "Por favor verifique el valor ingresado, el número de placa debe tener por lo menos 5 caracteres.",
-                },
-                {
-                  pattern: "[a-zA-Z]{3}[0-9]{3}|[a-zA-Z]{3}[0-9]{2}[a-zA-Z]",
-                  message: "Verifique el formato de la placa",
-                },
-              ]}
-            >
-              <Input
-                placeholder="para bicicleta escribir ABC123"
-                className="uppercase"
+            <Item label="¿Tiene placa?">
+              <input
+                type="checkbox"
+                onChange={(e) => setTienePlaca(e.target.checked)}
               />
             </Item>
+            {tienePlaca && (
+              <Item
+                label="Placa"
+                name="placa"
+                rules={[
+                  {
+                    required: true,
+                    message: "Por favor escriba la placa de su vehiculo 😁 👆",
+                  },
+                  {
+                    min: 3,
+                    message:
+                      "Por favor verifique el valor ingresado, el número de placa debe tener por lo menos 5 caracteres.",
+                  },
+                  {
+                    pattern: "[a-zA-Z]{3}[0-9]{3}|[a-zA-Z]{3}[0-9]{2}[a-zA-Z]",
+                    message: "Verifique el formato de la placa",
+                  },
+                ]}
+              >
+                <Input
+                  placeholder="para bicicleta escribir ABC123"
+                  className="uppercase"
+                />
+              </Item>
+            )}
+
             <Item
               label="Color"
               name="color"
