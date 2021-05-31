@@ -1,9 +1,12 @@
 import { Button, Input, Form, message } from "antd";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { crearProductos } from "../helpers/api";
 import background from "../img/background.jpg";
 
 export default function AccionesAdmin() {
+  const [vistaPrevia, setVistaPrevia] = useState(
+    "http://www.pequenomundo.cl/wp-content/themes/childcare/images/default.png"
+  );
   const refForm = useRef();
 
   const { Item } = Form;
@@ -34,6 +37,12 @@ export default function AccionesAdmin() {
         style={{ boxShadow: "-1px 2px 33px 0px rgba(59,160,191,1)" }}
       >
         <h2 className="mb-10 text-3xl text-center">Crear Producto</h2>
+        <img
+          className="object-cover w-full h-56 mx-auto rounded-3xl"
+          src={vistaPrevia}
+          alt="vista previa"
+        />
+        <br />
         <Form
           {...layout}
           ref={refForm}
@@ -62,7 +71,11 @@ export default function AccionesAdmin() {
               },
             ]}
           >
-            <Input placeholder="Pegue la url de la imagen" type="url" />
+            <Input
+              placeholder="Pegue la url de la imagen"
+              type="url"
+              onChange={(e) => setVistaPrevia(e.target.value)}
+            />
           </Item>
           <Item className="text-right">
             <br />
