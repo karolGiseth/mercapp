@@ -53,6 +53,16 @@ export default function Register() {
     }
   };
 
+  // constante para personalizar el modal
+  const layout = {
+    labelCol: {
+      span: 9,
+    },
+    wrapperCol: {
+      span: 18,
+    },
+  };
+
   return (
     <div
       className="min-h-screen pt-5"
@@ -66,7 +76,7 @@ export default function Register() {
         <h2 className="text-4xl text-center ">Registro</h2>
         <br />
         <div className="px-6">
-          <Form onFinish={formSucces} ref={refResetForm}>
+          <Form {...layout} onFinish={formSucces} ref={refResetForm}>
             <Item
               name="nombre"
               label="Nombre Completo"
@@ -190,7 +200,7 @@ export default function Register() {
               <Input.Password placeholder="Algo que recuerde facilmente" />
             </Item>
             <br />
-            <Item className="text-center">
+            <Item className="text-right">
               <Button htmlType="submit" type="primary" size="large">
                 Registrar Usuario
               </Button>

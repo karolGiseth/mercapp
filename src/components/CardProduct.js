@@ -51,7 +51,7 @@ export const CardProduct = ({
     message.success("Agregado al carrito");
   };
 
-  // contante para personalizar el modal
+  // constante para personalizar el modal
   const layout = {
     labelCol: {
       span: 5,

@@ -113,8 +113,18 @@ export default function CarsPublic() {
   };
 
   const { Option } = Select;
-
   const { Item } = Form;
+
+  // constante para personalizar el modal
+  const layout = {
+    labelCol: {
+      span: 8,
+    },
+    wrapperCol: {
+      span: 16,
+    },
+  };
+
   return (
     <div
       className="min-h-screen px-3 pt-6"
@@ -136,6 +146,7 @@ export default function CarsPublic() {
           destroyOnClose
         >
           <Form
+            {...layout}
             onFinish={formSucces}
             initialValues={
               editar.modal
@@ -303,7 +314,7 @@ export default function CarsPublic() {
               </Select>
             </Item>
             <br />
-            <Item className="text-center">
+            <Item className="text-right">
               <Button htmlType="submit" type="primary" size="large">
                 Guardar
               </Button>
@@ -318,7 +329,9 @@ export default function CarsPublic() {
         onOk={modalEliminar.eliminar}
         visible={modalEliminar.modal}
         title="¿Esta seguro de eliminar el vehiculo?"
-      ></Modal>
+      >
+        <p>Esta accion no se puede deshacer</p>
+      </Modal>
     </div>
   );
 }

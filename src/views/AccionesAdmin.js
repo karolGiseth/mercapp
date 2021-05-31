@@ -14,6 +14,16 @@ export default function AccionesAdmin() {
     message.success("Producto creado");
   };
 
+  // constante para personalizar el modal
+  const layout = {
+    labelCol: {
+      span: 7,
+    },
+    wrapperCol: {
+      span: 16,
+    },
+  };
+
   return (
     <div
       className="min-h-screen pt-6"
@@ -24,7 +34,12 @@ export default function AccionesAdmin() {
         style={{ boxShadow: "-1px 2px 33px 0px rgba(59,160,191,1)" }}
       >
         <h2 className="mb-10 text-3xl text-center">Crear Producto</h2>
-        <Form ref={refForm} onFinish={formSucces} className="text-center">
+        <Form
+          {...layout}
+          ref={refForm}
+          onFinish={formSucces}
+          className="text-center"
+        >
           <Item
             name="nombre"
             label="Nombre del producto"
@@ -49,7 +64,7 @@ export default function AccionesAdmin() {
           >
             <Input placeholder="Pegue la url de la imagen" type="url" />
           </Item>
-          <Item>
+          <Item className="text-right">
             <br />
             <Button htmlType="submit" type="primary" size="large">
               Guardar

@@ -98,6 +98,16 @@ export const PublicProducts = ({ actualizar }) => {
     return fragment;
   };
 
+  // constante para personalizar el modal
+  const layout = {
+    labelCol: {
+      span: 9,
+    },
+    wrapperCol: {
+      span: 16,
+    },
+  };
+
   return (
     <>
       {card()}
@@ -111,6 +121,7 @@ export const PublicProducts = ({ actualizar }) => {
         footer
       >
         <Form
+          {...layout}
           onFinish={handleForm}
           ref={refForm}
           initialValues={{
@@ -178,7 +189,7 @@ export const PublicProducts = ({ actualizar }) => {
           >
             <TextArea placeholder="ejemplo, Precio negociable, datos de la venta, precio según cantidad, ofertas, etc..." />
           </Item>
-          <Item>
+          <Item className="text-right">
             <Button htmlType="submit" type="primary" size="large">
               Editar
             </Button>

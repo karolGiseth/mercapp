@@ -56,6 +56,16 @@ export default function Login() {
       message.error("Correo, contraseña o tipo de usuario incorrectos ");
   };
 
+  // constante para personalizar el modal
+  const layout = {
+    labelCol: {
+      span: 6,
+    },
+    wrapperCol: {
+      span: 16,
+    },
+  };
+
   return (
     <div
       className="min-h-screen pt-3"
@@ -71,7 +81,7 @@ export default function Login() {
         <h2 className="text-4xl text-center ">Iniciar sesión</h2>
         <br />
         <div className="px-6">
-          <Form onFinish={formSucces}>
+          <Form {...layout} onFinish={formSucces}>
             <Item
               name="correo"
               label="Correo electrónico"
@@ -124,7 +134,7 @@ export default function Login() {
               </Select>
             </Item>
             <br />
-            <Item className="text-center">
+            <Item className="text-right">
               <Button type="primary" htmlType="submit" size="large">
                 Ingresar
               </Button>

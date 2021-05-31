@@ -79,6 +79,16 @@ export default function CreateProductSale() {
   const { Item } = Form;
   const { Option } = Select;
 
+  // constante para personalizar el modal
+  const layout = {
+    labelCol: {
+      span: 9,
+    },
+    wrapperCol: {
+      span: 16,
+    },
+  };
+
   return (
     <div
       className="min-h-screen px-3 pt-6"
@@ -103,7 +113,7 @@ export default function CreateProductSale() {
         footer
         destroyOnClose
       >
-        <Form onFinish={handleForm} ref={refForm}>
+        <Form {...layout} onFinish={handleForm} ref={refForm}>
           <Item
             name="nomProducto"
             label="Producto"
@@ -176,7 +186,7 @@ export default function CreateProductSale() {
           >
             <TextArea placeholder="ejemplo, Precio negociable, datos de la venta, precio según cantidad, ofertas, etc..." />
           </Item>
-          <Item>
+          <Item className="text-right">
             <Button htmlType="submit" type="primary" size="large">
               Crear
             </Button>

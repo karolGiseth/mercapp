@@ -58,6 +58,16 @@ export const Perfil = memo(() => {
   const { Item } = Form;
   const { Option } = Select;
 
+  // constante para personalizar el modal
+  const layout = {
+    labelCol: {
+      span: 9,
+    },
+    wrapperCol: {
+      span: 16,
+    },
+  };
+
   return (
     <div
       className="min-h-screen"
@@ -99,6 +109,7 @@ export const Perfil = memo(() => {
             destroyOnClose
           >
             <Form
+              {...layout}
               onFinish={formSucces}
               initialValues={{
                 nombre: sesion.nombre,
@@ -232,7 +243,7 @@ export const Perfil = memo(() => {
               >
                 <Input.Password placeholder="Algo que recuerde facilmente" />
               </Item>
-              <Item className="text-center">
+              <Item className="text-right">
                 <Button htmlType="submit" type="primary" size="large">
                   Actualizar Perfil
                 </Button>
