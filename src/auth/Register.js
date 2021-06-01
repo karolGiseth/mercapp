@@ -1,4 +1,4 @@
-import { Button, Form, Input, message, Select } from "antd";
+import { Button, Checkbox, Form, Input, message, Popover, Select } from "antd";
 import { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
@@ -14,6 +14,7 @@ export default function Register() {
   const [departamentos, setDepartamentos] = useState([]);
   const [ciudades, setCiudades] = useState([]);
   const [credenciales, setCredenciales] = useState([]);
+  const [politicas, setPoliticas] = useState(false);
   const history = useHistory();
 
   const refResetForm = useRef();
@@ -199,11 +200,61 @@ export default function Register() {
             >
               <Input.Password placeholder="Algo que recuerde facilmente" />
             </Item>
+            <Item
+              name="politicas"
+              label="Politica de privacidad"
+              rules={[
+                {
+                  validator: (_, value) =>
+                    politicas
+                      ? Promise.resolve()
+                      : Promise.reject(
+                          new Error(
+                            "Por favor acepte los terminos y condiciones para registrarse"
+                          )
+                        ),
+                },
+              ]}
+            >
+              <Checkbox onChange={(e) => setPoliticas(e.target.checked)}>
+                <Popover
+                  title="Política de Privacidad"
+                  content={
+                    <p>
+                      MercApp te informa sobre su Política de Privacidad
+                      respecto del tratamiento y protección de los datos de
+                      carácter personal de los usuarios y clientes que puedan
+                      ser recabados por la navegación o contratación de
+                      servicios a través del sitio Web. En este sentido, MercApp
+                      garantiza el cumplimiento de la normativa vigente en
+                      materia de protección de datos personales, reflejada en la
+                      Ley Orgánica 3/2018, de 5 de diciembre, de Protección de
+                      Datos Personales y de Garantía de Derechos Digitales (LOPD
+                      GDD). Cumple también con el Reglamento (UE) 2016/679 del
+                      Parlamento Europeo y del Consejo de 27 de abril de 2016
+                      relativo a la protección de las personas físicas (RGPD).
+                      El uso de mercapp implica la aceptación de esta Política
+                      de Privacidad así como las condiciones incluidas en el
+                      Aviso Legal.
+                    </p>
+                  }
+                >
+                  <a> Si, acepto la política de privacidad de MercApp</a>
+                </Popover>
+              </Checkbox>
+            </Item>
             <br />
             <Item className="text-right">
-              <Button htmlType="submit" type="primary" size="large">
-                Registrar Usuario
-              </Button>
+              {politicas ? (
+                <Button htmlType="submit" type="primary" size="large">
+                  Registrar Usuario
+                </Button>
+              ) : (
+                <Button htmlType="submit" disabled type="primary" size="large">
+                  Registrar Usuario
+                </Button>
+              )}
+
               <br />
               <br />
             </Item>

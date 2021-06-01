@@ -77,7 +77,7 @@ export default function AccionesAdmin() {
               onChange={(e) => setVistaPrevia(e.target.value)}
             />
           </Item>
-          <Item className="text-right">
+          <Item className="flex justify-center">
             <br />
             <Button htmlType="submit" type="primary" size="large">
               Guardar
