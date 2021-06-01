@@ -26,7 +26,7 @@ export default function Envios() {
       className="min-h-screen pt-5"
       style={{ backgroundImage: `url(${background})` }}
     >
-      <h2 className="text-3xl text-center">Envios</h2>
+      <h2 className="text-3xl text-center">Envíos</h2>
       <div className="grid grid-cols-4">
         {(() => {
           let fragmento = [];

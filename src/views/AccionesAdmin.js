@@ -1,5 +1,6 @@
-import { Button, Input, Form, message } from "antd";
+import { Button, Input, Form, message, Popover } from "antd";
 import { useRef, useState } from "react";
+import { useHistory } from "react-router";
 import { crearProductos } from "../helpers/api";
 import background from "../img/background.jpg";
 
@@ -8,6 +9,7 @@ export default function AccionesAdmin() {
     "http://www.pequenomundo.cl/wp-content/themes/childcare/images/default.png"
   );
   const refForm = useRef();
+  const history = useHistory();
 
   const { Item } = Form;
 
@@ -37,11 +39,16 @@ export default function AccionesAdmin() {
         style={{ boxShadow: "-1px 2px 33px 0px rgba(59,160,191,1)" }}
       >
         <h2 className="mb-10 text-3xl text-center">Crear Producto</h2>
-        <img
-          className="object-cover w-full h-56 mx-auto rounded-3xl"
-          src={vistaPrevia}
-          alt="vista previa"
-        />
+        <Popover
+          title="Vista previa"
+          content="Asi se vera la imagen cuando cree el producto"
+        >
+          <img
+            className="object-cover w-full h-56 mx-auto rounded-3xl"
+            src={vistaPrevia}
+            alt="vista previa"
+          />
+        </Popover>
         <br />
         <Form
           {...layout}
@@ -84,6 +91,20 @@ export default function AccionesAdmin() {
             </Button>
           </Item>
         </Form>
+        <p className="text-center">
+          Sitio recomendado para buscar las imagenes{" "}
+          <a
+            href="https://pixabay.com/es/images/search/frutas/"
+            target="_blank"
+          >
+            Aqui
+          </a>
+        </p>
+        <Item className="text-center">
+          <Button danger type="primary" onClick={() => history.push("/login")}>
+            Salir
+          </Button>
+        </Item>
       </div>
     </div>
   );

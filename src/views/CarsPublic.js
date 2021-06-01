@@ -41,7 +41,7 @@ export default function CarsPublic() {
     } else {
       const data = crearVehiculo(nuevoVehiculo);
       setVehiculos({ ...vehiculos, [data]: nuevoVehiculo });
-      message.success("Vehiculo creado exitosamente");
+      message.success("Vehículo creado exitosamente");
     }
     setModal(false);
     setEditar({ ...editar, modal: false });
@@ -96,7 +96,7 @@ export default function CarsPublic() {
                     }
                     setVehiculos(data);
                     eliminarVehiculo(data);
-                    message.warning("Vehiculo eliminado ⛔");
+                    message.warning("Vehículo eliminado ⛔");
                     setModalEliminar({ modal: false, eliminar: null });
                   };
                   setModalEliminar({ modal: true, eliminar });
@@ -130,13 +130,13 @@ export default function CarsPublic() {
       className="min-h-screen px-3 pt-6"
       style={{ backgroundImage: `url(${background})` }}
     >
-      <h2 className="text-4xl text-center">Mis vehiculos para MercApp</h2>
+      <h2 className="text-4xl text-center">Mis vehículos para MercApp</h2>
       <div className="text-center">
         <Button onClick={() => setModal(true)} type="primary" size="large">
-          Crear vehiculo
+          Crear vehículo
         </Button>
         <Modal
-          title={editar.modal ? "Editar vehiculo" : "Registrar vehiculo"}
+          title={editar.modal ? "Editar vehículo" : "Registrar vehículo"}
           visible={modal}
           onCancel={() => {
             setModal(false);
@@ -163,7 +163,7 @@ export default function CarsPublic() {
                 {
                   required: true,
                   message:
-                    "Por favor escriba el nombre de la marca de su vehiculo 😁 👆",
+                    "Por favor escriba el nombre de la marca de su vehículo 😁 👆",
                 },
                 {
                   pattern: "[a-zA-Z ]{3,254}",
@@ -174,13 +174,13 @@ export default function CarsPublic() {
               <Input placeholder="mazda" />
             </Item>
             <Item
-              label="Tipo de vehiculo"
+              label="Tipo de vehículo"
               name="tipoVehiculo"
               rules={[
                 {
                   required: true,
                   message:
-                    "Por favor escriba el tipo de vehiculo a registrar 😁 👆",
+                    "Por favor escriba el tipo de vehículo a registrar 😁 👆",
                 },
               ]}
             >
@@ -213,7 +213,7 @@ export default function CarsPublic() {
               rules={[
                 {
                   required: true,
-                  message: "Por favor escriba el modelo de su vehiculo 😁 👆",
+                  message: "Por favor escriba el modelo de su vehículo 😁 👆",
                 },
               ]}
             >
@@ -241,7 +241,7 @@ export default function CarsPublic() {
                 rules={[
                   {
                     required: true,
-                    message: "Por favor escriba la placa de su vehiculo 😁 👆",
+                    message: "Por favor escriba la placa de su vehículo 😁 👆",
                   },
                   {
                     min: 3,
@@ -267,7 +267,7 @@ export default function CarsPublic() {
               rules={[
                 {
                   required: true,
-                  message: "Por favor escriba el color de su vehiculo 😁 👆",
+                  message: "Por favor escriba el color de su vehículo 😁 👆",
                 },
                 {
                   pattern: "[a-zA-Z ]{3,254}",
@@ -284,7 +284,7 @@ export default function CarsPublic() {
                 {
                   required: true,
                   message:
-                    "Por favor escriba el cilindraje de su vehiculo 😁 👆",
+                    "Por favor escriba el cilindraje de su vehículo 😁 👆",
                 },
               ]}
             >
@@ -301,7 +301,7 @@ export default function CarsPublic() {
                 {
                   required: true,
                   message:
-                    "Por favor seleccione el combustible que usa su vehiculo 😁 👆",
+                    "Por favor seleccione el combustible que usa su vehículo 😁 👆",
                 },
               ]}
             >
@@ -328,7 +328,7 @@ export default function CarsPublic() {
         onCancel={() => setModalEliminar({ modal: false, eliminar: null })}
         onOk={modalEliminar.eliminar}
         visible={modalEliminar.modal}
-        title="¿Esta seguro de eliminar el vehiculo?"
+        title="¿Esta seguro de eliminar el vehículo?"
       >
         <p>Esta accion no se puede deshacer</p>
       </Modal>

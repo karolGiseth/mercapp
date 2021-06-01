@@ -46,6 +46,7 @@ export const Perfil = memo(() => {
     message.success("Editado correctamente");
     message.warning("Inicie sesión nuevamente para ver los cambios...");
     editarCuenta(sesion.key, datos);
+    history.push("/login");
     setModal(false);
   };
 
