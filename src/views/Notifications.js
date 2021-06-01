@@ -53,7 +53,10 @@ export const Notifications = () => {
                 <p>Comprador: {element.comprador}</p>
                 <p>Email del comprador: {element.correoComprador}</p>
                 <p>Dirección: {element.direccion}</p>
-                <p>Precio: {element.precio}</p>
+                <p>
+                  Precio:{" "}
+                  {`$ ${element.precio}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                </p>
                 <p>
                   Cantidad: {element.cantidadStock} {element.pesoProducto}
                 </p>
@@ -117,7 +120,10 @@ export const Notifications = () => {
                 <p>Comprador: {element.comprador}</p>
                 <p>Email del comprador: {element.correoComprador}</p>
                 <p>Dirección: {element.direccion}</p>
-                <p>Precio: {element.precio}</p>
+                <p>
+                  Precio:{" "}
+                  {`$ ${element.precio}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                </p>
                 <p>
                   Cantidad: {element.cantidadStock} {element.pesoProducto}
                 </p>

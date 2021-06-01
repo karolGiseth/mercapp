@@ -239,7 +239,10 @@ export default function Register() {
                     </p>
                   }
                 >
-                  <a> Si, acepto la política de privacidad de MercApp</a>
+                  <p className="hover:text-blue-400">
+                    {" "}
+                    Si, acepto la política de privacidad de MercApp
+                  </p>
                 </Popover>
               </Checkbox>
             </Item>

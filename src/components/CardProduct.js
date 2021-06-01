@@ -77,7 +77,11 @@ export const CardProduct = ({
         </p>
       )}
       {vendedor && <p className="mb-2">Vendedor/Productor: {vendedor}</p>}
-      {precio && <p className="mb-2">Precio: {precio}</p>}
+      {precio && (
+        <p className="mb-2">
+          Precio: {`$ ${precio}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+        </p>
+      )}
       <Zoom>
         <Button
           onClick={() => setModal(true)}

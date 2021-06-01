@@ -88,7 +88,10 @@ export const ShoppingCart = () => {
               />
               <h2 className="text-2xl text-center">{element.nomProducto}</h2>
               <p>{element.descripcion}</p>
-              <p>Precio: {element.precio}</p>
+              <p>
+                Precio:{" "}
+                {`$ ${element.precio}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </p>
               <p>Vendedor/productor: {element.vendedor}</p>
               <p>Email del vendedor/productor: {element.correoVendedor}</p>
               <p>
@@ -194,11 +197,14 @@ export const ShoppingCart = () => {
       <div className="sticky z-50 p-3 mx-10 bg-white rounded-lg shadow-lg sm:w-1/2 md:w-1/4 top-10">
         💰 <span className="text-xl font-semibold">Total carrito:</span>
         <br />
-        Comprado: {agregadoCarrito.comprado}
+        Comprado:{" "}
+        {`$ ${agregadoCarrito.comprado}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
         <br />
-        Pendiente: {agregadoCarrito.pendiente}
+        Pendiente:{" "}
+        {`$ ${agregadoCarrito.pendiente}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
         <br />
-        Entregado: {agregadoCarrito.entregado}
+        Entregado:{" "}
+        {`$ ${agregadoCarrito.entregado}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
       </div>
       <div className="grid grid-cols-4 sm:px-10">{cartProduct()}</div>
       <br />

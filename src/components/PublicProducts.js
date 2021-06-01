@@ -68,7 +68,10 @@ export const PublicProducts = ({ actualizar }) => {
                 alt={element.nombreProducto}
               />
               <h2 className="mb-2 text-xl">{element.nombreProducto}</h2>
-              <h2 className="mb-2 text-xl">Precio: {element.precio}</h2>
+              <h2 className="mb-2 text-xl">
+                Precio:{" "}
+                {`$ ${element.precio}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </h2>
               <p className="mb-2">{element.descripcion}</p>
               <p className="mb-2">
                 Cantidad: {element.cantidadStock} {element.pesoProducto}
@@ -174,7 +177,7 @@ export const PublicProducts = ({ actualizar }) => {
               },
             ]}
           >
-            <Input type="number" placeholder="valor del producto" />
+            <Input placeholder="valor del producto" />
           </Item>
           <Item
             name="descripcion"

@@ -96,6 +96,7 @@ export default function AccionesAdmin() {
           <a
             href="https://pixabay.com/es/images/search/frutas/"
             target="_blank"
+            rel="noopener noreferrer"
           >
             Aqui
           </a>
