@@ -102,7 +102,8 @@ export const ShoppingCart = () => {
                   type="navigation"
                   className="flex flex-col"
                   current={
-                    element.estado === "Pendiente de envío"
+                    element.estado === "Pendiente de envío" ||
+                    element.estado === "Comprado"
                       ? 0
                       : element.estado === "En camino"
                       ? 1
