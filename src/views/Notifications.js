@@ -28,6 +28,14 @@ export const Notifications = () => {
       setVehiculos(await listarVehiculos());
     })();
   }, []);
+  const layout = {
+    labelCol: {
+      span: 9,
+    },
+    wrapperCol: {
+      span: 16,
+    },
+  };
 
   const cartProduct = () => {
     let fragment = [];
@@ -201,6 +209,9 @@ export const Notifications = () => {
         destroyOnClose
       >
         <Form
+        {...layout
+
+        }
           onFinish={formSucces}
           initialValues={{
             estado: datosActualizados.estado,
@@ -259,6 +270,7 @@ export const Notifications = () => {
             name="transportadorAsignado"
           >
             <Select
+            style={{width:"295px"}}
               disabled={
                 datosActualizados.transportadorAcepto === "Aceptado"
                   ? true
@@ -284,7 +296,7 @@ export const Notifications = () => {
               })()}
             </Select>
           </Item>
-          <Item className="text-center">
+          <Item className="text-right">
             <Button type="primary" htmlType="submit" size="large">
               Actualizar
             </Button>

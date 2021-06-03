@@ -204,7 +204,7 @@ export const Perfil = memo(() => {
               </Item>
               <Item
                 name="direccion"
-                label="Dirección de recidencia"
+                label="Dirección de residencia"
                 rules={[
                   {
                     required: true,
@@ -216,7 +216,7 @@ export const Perfil = memo(() => {
               </Item>
               <Item
                 name="telefono"
-                label="Numero telefonico"
+                label="Número teléfonico"
                 rules={[
                   {
                     min: 7,

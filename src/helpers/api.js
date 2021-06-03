@@ -1,4 +1,4 @@
-const url = "https://crud-firebase-3d5f0-default-rtdb.firebaseio.com/mercapp";
+const url = "https://mercaap-a0cd9-default-rtdb.firebaseio.com";
 
 // acciones del administrador
 export const crearProductos = async (producto) => {

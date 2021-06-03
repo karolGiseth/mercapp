@@ -38,7 +38,7 @@ export const Navigation = () => {
         </Popover>
       )}
       {sesion.rol === "comprador" && (
-        <Popover content="carrito de compras">
+        <Popover content="Carrito de compras">
           <NavLink
             exact
             activeClassName="border-t-4 border-blue-500 transform -translate-y-2"

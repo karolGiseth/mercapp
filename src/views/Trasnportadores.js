@@ -34,7 +34,7 @@ export default function Trasnportadores() {
               <p>Placa: {element.placa}</p>
               <p>Propietario: {element.nombre}</p>
               <p>Dirección: {element.direccion}</p>
-              <p>Telefono: {element.telefono}</p>
+              <p>Teléfono: {element.telefono}</p>
               <p>Correo: {element.correo}</p>
             </div>
             <Button

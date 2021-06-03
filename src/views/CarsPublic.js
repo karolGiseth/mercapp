@@ -218,10 +218,10 @@ export default function CarsPublic() {
               ]}
             >
               <Select placeholder="2018">
-                <Option>1991</Option>
+                
                 {(() => {
                   let fragmento = [];
-                  for (let index = 1990; index < 2021; index++) {
+                  for (let index = 1970; index < 2021; index++) {
                     fragmento.push(<Option value={index}>{index}</Option>);
                   }
                   return fragmento;
